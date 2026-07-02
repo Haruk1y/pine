@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pine-pruner"
+version = "0.1.0"
+description = "PINE: conformal in-distribution prediction-equivalent pruning for tree ensembles"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "PINE authors"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "gurobipy>=12,<13",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "typing-extensions",
+    "xgboost",
+]
+
+[project.optional-dependencies]
+boosters = [
+    "lightgbm",
+]
+dev = [
+    "pytest",
+]
+
+[project.scripts]
+pine-chowliu = "scripts.run_pine_chowliu:main"
+
+[tool.setuptools.packages.find]
+include = ["pine*", "scripts*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore:.*pkg_resources.*:DeprecationWarning",
+]
